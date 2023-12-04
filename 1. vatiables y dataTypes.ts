@@ -22,3 +22,7 @@ type HexadecimalColor = `#${string}`
 
 // const color :HexadecimalColor = 'ececec' ---------------> Error
 const color :HexadecimalColor = '#ececec'
+// Union types
+// es una cosa o la otra
+type Scale = 'low' | 'medium' | 'high'
+let numberOrString: number | string
