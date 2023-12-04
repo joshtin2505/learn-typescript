@@ -59,4 +59,62 @@ type HeroPropierties = {
     isActive?: boolean
     powerScale?: HeroPowerScale
 }
-type Hero3 = HeroBasicInfo & HeroPropierties
+type Hero3 = HeroBasicInfo & HeroPropierties // <------------
+
+let hero2 : Hero = {
+    name : 'IronMan',
+    age : 30
+}
+
+function createHero3(input: HeroBasicInfo): Hero3 {
+    const { name, age } = input
+    return {
+        id: crypto.randomUUID(),
+        name,
+        age,
+        isActive: true
+    }
+}
+const IronMan = createHero3({name: 'thor', age: 1800})
+IronMan.powerScale = 'local'
+
+// ---------------------------->
+
+// Type Indexing 
+
+type HeroProp = {
+    isActive: boolean,
+    adress: {
+        planet: string,
+        city: string
+    }
+}
+const adressHero: HeroProp['adress'] = {
+    planet: 'Earth',
+    city: 'Cartagena'
+}
+
+// ---------------------------->
+// Type From Value
+
+const adress = {
+    planet: 'Earth',
+    city: 'Cartagena'
+}
+
+type Adress = typeof adress
+
+const adressYoutube: Adress = {
+    planet: 'Earth',
+    city: 'chicago'
+}
+
+// Type from function return 
+
+function createAdress(){
+    return{
+        planet: 'Earth',
+        city: 'Cartagena'
+    }
+}
+type EarthAdress = ReturnType<typeof createAdress>
