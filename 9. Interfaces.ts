@@ -47,3 +47,40 @@ const carrito: CarritoDeCompras = {
         }
     ]
 }
+
+// Narrowing 
+
+interface Mario {
+    company: 'Nintendo'
+    name: string
+    jump(): void
+}
+interface Sonic {
+    company: 'Sega'
+    name: string
+    run(): void
+}
+
+type Personaje = Mario | Sonic
+
+function play(personaje: Personaje): void {
+    if(personaje.company == 'Nintendo') {
+        personaje.jump()
+        return
+    }
+    personaje.run()
+}
+// tambien puede ser de la siguiente manera
+
+// Type Guard
+// supone que personaje es sonic y pregunta si el metodo correr esta dentro de el personaje
+function checkIsSonic(personaje:Personaje): personaje is Sonic {
+    return (personaje as Sonic).run !== undefined
+}
+function play2(personaje: Personaje): void {
+    if(checkIsSonic(personaje)) {
+        personaje.run()
+        return
+    }
+    personaje.jump()
+}
